@@ -22,10 +22,9 @@ export class EditComponent {
     }
 
     getDetailUser(){
-      this.route.params.subscribe(dataRoute => {
-         this.userService.getDetailUser(dataRoute['id']).subscribe(data => {
-          console.log(this.username);
-          this.username = data;
+      this.route.params.subscribe((dataRoute: any) => {
+         this.userService.getDetailUser(dataRoute.id).subscribe(data => {
+           this.username = data;
          })
       })
     }

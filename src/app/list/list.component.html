@@ -1,32 +1,32 @@
 <div class="container">
-    <h1 class="py-3 text-center">SHOW API LIST</h1>
-    
-    <a routerLink="/add-component" class="btn btn-success">Thêm mới</a>
-    <hr>
-    <router-outlet></router-outlet>
-    <table class="table table-bordered">
-      <thead class="table-dark">
-        <tr>
-          <th>#</th>
-          <th width="15%">Avatar</th>
-          <th>name</th>
-          <th>username</th>
-          <th>gender</th>
-          <th>edit</th>
-          <th>delete</th>
-        </tr>
-      </thead>
-  
-      <tbody>
-        <tr *ngFor="let item of data">
-            <td>{{item.id}}</td>
-            <td><img src="{{item.avatar}}" width="100%"/></td>
-            <td>{{item.name}}</td>
-            <td>{{item.username}}</td>
-            <td>{{item.gender}}</td>
-            <td><a class="btn btn-warning" routerLink="/edit/{{item.id}}">Edit</a></td>
-            <td><button (click)="deleteUser(item.id)"  class="btn btn-danger">Delete</button></td>
-          </tr>
-      </tbody>
-    </table>
-  </div>
+  <h1 class="py-3 text-center">SHOW API LIST</h1>
+
+  <a routerLink="/add-component" class="btn btn-success">Thêm mới</a>
+  <hr>
+  <router-outlet></router-outlet>
+  <table class="table table-bordered">
+    <thead class="table-dark">
+      <tr>
+        <th>#</th>
+        <th width="15%">Avatar</th>
+        <th>name</th>
+        <th>username</th>
+        <th>gender</th>
+        <th>edit</th>
+        <th>delete</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let item of data">
+        <td>{{item.id}}</td>
+        <td><img src="{{item.avatar}}" width="100%" /></td>
+        <td>{{item.name}}</td>
+        <td>{{item.username}}</td>
+        <td>{{item.gender}}</td>
+        <td><a class="btn btn-warning" routerLink="/edit/{{item.id}}">Edit</a></td>
+        <td><button (click)="deleteUser(item.id)" class="btn btn-danger">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

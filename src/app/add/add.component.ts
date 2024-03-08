@@ -42,7 +42,7 @@ export class AddComponent {
 
     this.userService.addUser(formData).subscribe(response => {
       alert("Them san pham thanh cong!");
-      this.Router.navigateByUrl('/');
+      this.Router.navigateByUrl('/list-component');
     }
     );
   }
