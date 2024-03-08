@@ -12,30 +12,41 @@ export class EditComponent {
   username: any;
   userData: any;
 
+  ngOnInit(): void{
+    this.getDetailUser();
+  }
+
   constructor(
     private userService: UserService,
     private route: ActivatedRoute,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private Router: Router
     ){
-      this.username = this.formBuilder.group({
-        avatar: ['', Validators.required],
-        name: ['', Validators.required],
-        username: ['', Validators.required],
-        gender: ['', Validators.required],
-      });
-
-      this.getDetailUser();
     }
-
+    
     getDetailUser(){
       this.route.params.subscribe((dataRoute: any) => {
          this.userService.getDetailUser(dataRoute.id).subscribe(data => {
            this.userData = data;
+           console.log(this.userData);
+           this.initForm(this.userData);
          })
       })
     }
 
-  onSubmit(){
-  
+    initForm(data: any){
+      this.username = this.formBuilder.group({
+        avatar: [data.avatar, Validators.required],
+        name: [data.name, Validators.required],
+        username: [data.username, Validators.required],
+        gender: [data.gender, Validators.required],
+      });
+    }
+
+  editUser(){
+    this.userService.updateUser(this.userData.id, this.userData).subscribe(data => {
+      // this.Router.navigateByUrl('/list-component');
+      alert("Cập nhật Người dùng thành công");
+    });
   }
 }
