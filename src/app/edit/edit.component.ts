@@ -10,21 +10,27 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class EditComponent {
   username: any;
-
-  ngOnInit(): void{
-    this.getDetailUser();
-  }
+  userData: any;
 
   constructor(
     private userService: UserService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private formBuilder: FormBuilder
     ){
+      this.username = this.formBuilder.group({
+        avatar: ['', Validators.required],
+        name: ['', Validators.required],
+        username: ['', Validators.required],
+        gender: ['', Validators.required],
+      });
+
+      this.getDetailUser();
     }
 
     getDetailUser(){
       this.route.params.subscribe((dataRoute: any) => {
          this.userService.getDetailUser(dataRoute.id).subscribe(data => {
-           this.username = data;
+           this.userData = data;
          })
       })
     }
