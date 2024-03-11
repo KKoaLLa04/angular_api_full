@@ -11,6 +11,7 @@ import { EditComponent } from './edit/edit.component';
 import { ChildListComponent } from './list/child-list/child-list.component';
 import { ChildAddComponent } from './add/child-add/child-add.component';
 import { ChildEditComponent } from './edit/child-edit/child-edit.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ChildEditComponent } from './edit/child-edit/child-edit.component';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
