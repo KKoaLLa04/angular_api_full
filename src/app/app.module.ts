@@ -6,21 +6,28 @@ import { AppComponent } from './app.component';
 import { AddComponent } from './add/add.component';
 import { ListComponent } from './list/list.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EditComponent } from './edit/edit.component';
+import { ChildListComponent } from './list/child-list/child-list.component';
+import { ChildAddComponent } from './add/child-add/child-add.component';
+import { ChildEditComponent } from './edit/child-edit/child-edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AddComponent,
     ListComponent,
-    EditComponent
+    EditComponent,
+    ChildListComponent,
+    ChildAddComponent,
+    ChildEditComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

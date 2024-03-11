@@ -17,14 +17,4 @@ export class ListComponent {
         this.data = data;
       })
   }
-
-  deleteUser(id: number){
-    let checkSure = confirm("Ban co chac chan muon xoa?");
-
-    if(checkSure){
-      this.userService.deleteUser(id).subscribe(data => {
-        alert("Xoa nguoi dung thanh cong");
-      })
-    }
-  }
 }

@@ -9,28 +9,12 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./edit.component.scss']
 })
 export class EditComponent {
-  username: any;
 
-  ngOnInit(): void{
-    this.getDetailUser();
-  }
-
-  constructor(
-    private userService: UserService,
-    private route: ActivatedRoute
-    ){
-    }
-
-    getDetailUser(){
-      this.route.params.subscribe(dataRoute => {
-         this.userService.getDetailUser(dataRoute['id']).subscribe(data => {
-          console.log(this.username);
-          this.username = data;
-         })
-      })
-    }
-
-  onSubmit(){
-  
+  constructor(private userService: UserService){}
+  handlerToEditUser(event: any){
+    this.userService.updateUser(event.id, event).subscribe(data => {
+      // this.Router.navigateByUrl('/list-component');
+      alert("Cập nhật Người dùng thành công");
+    });
   }
 }
