@@ -28,7 +28,6 @@ export class EditComponent {
       this.route.params.subscribe((dataRoute: any) => {
          this.userService.getDetailUser(dataRoute.id).subscribe(data => {
            this.userData = data;
-           console.log(this.userData);
            this.initForm(this.userData);
          })
       })
@@ -36,15 +35,22 @@ export class EditComponent {
 
     initForm(data: any){
       this.username = this.formBuilder.group({
-        avatar: [data.avatar, Validators.required],
-        name: [data.name, Validators.required],
-        username: [data.username, Validators.required],
-        gender: [data.gender, Validators.required],
+        avatar: ['', Validators.required],
+        name: ['', Validators.required],
+        username: ['', Validators.required],
+        gender: ['', Validators.required],
       });
     }
 
   editUser(){
-    this.userService.updateUser(this.userData.id, this.userData).subscribe(data => {
+    console.log(this.username);
+    let dataRequest = {
+      avatar: this.username.value.avatar,
+      name: this.username.value.name,
+      username: this.username.value.username,
+      gender: this.username.value.gender,
+    }
+    this.userService.updateUser(this.userData.id, dataRequest).subscribe(data => {
       // this.Router.navigateByUrl('/list-component');
       alert("Cập nhật Người dùng thành công");
     });
