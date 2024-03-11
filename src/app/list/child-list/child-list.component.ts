@@ -26,4 +26,22 @@ export class ChildListComponent {
       })
     }
   }
+
+  searchText:String = '';
+
+  onFilterSearchText(value: string){
+    this.searchText = value;
+  }
+
+  currentPageData = 1;
+  perPage: number = 5;
+
+  totalPagesData: number = 51;
+  // totalPagesData(): number {
+  //   return Math.ceil(this.data.length / this.perPage); // Tính toán tổng số trang dựa trên số lượng đối tượng trong mảng và số lượng đối tượng trên mỗi trang
+  // }
+
+  pageChange(currentPage: number){
+    this.currentPageData = currentPage;
+  }
 }

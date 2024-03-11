@@ -13,7 +13,6 @@ export class ListComponent {
     private userService: UserService,
     ){
       this.userService.getData().subscribe(data => {
-        console.warn(data);
         this.data = data;
       })
   }

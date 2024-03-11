@@ -12,6 +12,8 @@ import { ChildListComponent } from './list/child-list/child-list.component';
 import { ChildAddComponent } from './add/child-add/child-add.component';
 import { ChildEditComponent } from './edit/child-edit/child-edit.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SearchComponent } from './list/search/search.component';
+import { PaginationComponent } from './list/pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ChildListComponent,
     ChildAddComponent,
     ChildEditComponent,
+    SearchComponent,
+    PaginationComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,7 +33,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
