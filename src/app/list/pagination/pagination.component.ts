@@ -11,6 +11,7 @@ export class PaginationComponent implements OnInit{
     @Input() totalPages: number =1;
     @Input() limit:number = 5;
     @Input() data: any = '';
+    displayData: boolean = true;
 
     @Output() pageChange: EventEmitter<number> = new EventEmitter<number>();
 
@@ -20,7 +21,6 @@ export class PaginationComponent implements OnInit{
       const pagesCount = Math.ceil(this.totalPages/ this.limit);
       this.pages = this.range(1, pagesCount);
       this.data = this.displayList(1, pagesCount);
-      console.log(this.data)
     }
 
     range(start: number, end:number): number[]{

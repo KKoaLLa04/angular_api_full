@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 import { UserService } from '../service/user.service';
 
 @Component({
@@ -6,14 +6,14 @@ import { UserService } from '../service/user.service';
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss']
 })
-export class ListComponent {
+export class ListComponent{
 
   data: any;
   constructor(
     private userService: UserService,
     ){
-      this.userService.getData().subscribe(data => {
-        this.data = data;
+      this.userService.getData().subscribe((responseData: any) => {
+        this.data = responseData;
       })
   }
 }

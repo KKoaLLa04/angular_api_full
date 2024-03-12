@@ -14,7 +14,8 @@ export class ChildListComponent {
     private userService: UserService,
     private router: Router
     ){
-  }
+      // pagination
+    }
 
   deleteUser(id: number){
     let checkSure = confirm("Ban co chac chan muon xoa?");
@@ -43,5 +44,16 @@ export class ChildListComponent {
 
   pageChange(currentPage: number){
     this.currentPageData = currentPage;
+  }
+
+  checkDisplayList(i: number){
+    let pageMax = (this.currentPageData) * 5; // 1 => 5, 2 => 10
+    let pageMin = (this.currentPageData-1) * 5 +1; //1 => 1; 2 => 6
+
+    if(i >= pageMin && i <= pageMax){
+      return true;
+    }
+
+    return false;
   }
 }

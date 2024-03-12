@@ -20,14 +20,14 @@
       </thead>
   
       <tbody>
-          <tr *ngFor="let item of data">
-            <td *ngIf="searchText==='' || item.name.toLowerCase().includes(searchText) || item.username.toLowerCase().includes(searchText)">{{item.id}}</td>
-            <td *ngIf="searchText==='' || item.name.toLowerCase().includes(searchText) || item.username.toLowerCase().includes(searchText)"><img src="{{item.avatar}}" width="100%"/></td>
-            <td *ngIf="searchText==='' || item.name.toLowerCase().includes(searchText) || item.username.toLowerCase().includes(searchText)">{{item.name}}</td>
-            <td *ngIf="searchText==='' || item.name.toLowerCase().includes(searchText) || item.username.toLowerCase().includes(searchText)">{{item.username}}</td>
-            <td *ngIf="searchText==='' || item.name.toLowerCase().includes(searchText) || item.username.toLowerCase().includes(searchText)">{{item.gender}}</td>
-            <td *ngIf="searchText==='' || item.name.toLowerCase().includes(searchText) || item.username.toLowerCase().includes(searchText)"><a class="btn btn-warning" routerLink="/edit/{{item.id}}">Edit</a></td>
-            <td *ngIf="searchText==='' || item.name.toLowerCase().includes(searchText) || item.username.toLowerCase().includes(searchText)"><button (click)="deleteUser(item.id)"  class="btn btn-danger">Delete</button></td>
+          <tr *ngFor="let item of data, let i = index">
+            <td *ngIf="(searchText==='' || item.name.toLowerCase().includes(searchText) || item.username.toLowerCase().includes(searchText)) && checkDisplayList(i+1)">{{i+1}}</td>
+            <td *ngIf="(searchText==='' || item.name.toLowerCase().includes(searchText) || item.username.toLowerCase().includes(searchText)) && checkDisplayList(i+1)"><img src="{{item.avatar}}" width="100%"/></td>
+            <td *ngIf="(searchText==='' || item.name.toLowerCase().includes(searchText) || item.username.toLowerCase().includes(searchText)) && checkDisplayList(i+1)">{{item.name}}</td>
+            <td *ngIf="(searchText==='' || item.name.toLowerCase().includes(searchText) || item.username.toLowerCase().includes(searchText)) && checkDisplayList(i+1)">{{item.username}}</td>
+            <td *ngIf="(searchText==='' || item.name.toLowerCase().includes(searchText) || item.username.toLowerCase().includes(searchText)) && checkDisplayList(i+1)">{{item.gender}}</td>
+            <td *ngIf="(searchText==='' || item.name.toLowerCase().includes(searchText) || item.username.toLowerCase().includes(searchText)) && checkDisplayList(i+1)"><a class="btn btn-warning" routerLink="/edit/{{item.id}}">Edit</a></td>
+            <td *ngIf="(searchText==='' || item.name.toLowerCase().includes(searchText) || item.username.toLowerCase().includes(searchText)) && checkDisplayList(i+1)"><button (click)="deleteUser(item.id)"  class="btn btn-danger">Delete</button></td>
           </tr>
       </tbody>
     </table>
