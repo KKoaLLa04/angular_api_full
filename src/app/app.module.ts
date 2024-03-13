@@ -14,6 +14,7 @@ import { ChildEditComponent } from './edit/child-edit/child-edit.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SearchComponent } from './list/search/search.component';
 import { PaginationComponent } from './list/pagination/pagination.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { PaginationComponent } from './list/pagination/pagination.component';
     ReactiveFormsModule,
     FormsModule,
     BrowserAnimationsModule,
+    ModalModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]
