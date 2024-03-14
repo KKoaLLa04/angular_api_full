@@ -15,6 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SearchComponent } from './list/search/search.component';
 import { PaginationComponent } from './list/pagination/pagination.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { StatusDirectiveDirective } from './directives/status-directive.directive';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     ChildEditComponent,
     SearchComponent,
     PaginationComponent,
+    StatusDirectiveDirective,
   ],
   imports: [
     BrowserModule,
