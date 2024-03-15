@@ -12,7 +12,6 @@ export class ChildAddComponent {
   username: FormGroup;
 
   constructor(
-    private userService: UserService,
     private Router: Router,
     private formBuilder: FormBuilder
     ){

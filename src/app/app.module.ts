@@ -16,6 +16,7 @@ import { SearchComponent } from './list/search/search.component';
 import { PaginationComponent } from './list/pagination/pagination.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { StatusDirectiveDirective } from './directives/status-directive.directive';
+import { GenderDatePipe } from './pipe/gender-date.pipe';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { StatusDirectiveDirective } from './directives/status-directive.directiv
     SearchComponent,
     PaginationComponent,
     StatusDirectiveDirective,
+    GenderDatePipe,
   ],
   imports: [
     BrowserModule,

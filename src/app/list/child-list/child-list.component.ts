@@ -1,4 +1,4 @@
-import { Component, Input, TemplateRef } from '@angular/core';
+import { Component, Input, OnInit, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
@@ -9,12 +9,14 @@ import { UserService } from 'src/app/service/user.service';
   templateUrl: './child-list.component.html',
   styleUrls: ['./child-list.component.scss']
 })
-export class ChildListComponent {
+export class ChildListComponent implements OnInit {
   @Input() data: any = '';
 
   modalRef?: BsModalRef;
-  username: FormGroup;
+  username!: FormGroup;
   message?: string;
+  today:Date = new Date();
+  formattedToday:string = "2024-03-14";
 
   constructor(
     private userService: UserService,
@@ -23,6 +25,15 @@ export class ChildListComponent {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     ){
+      
+    }
+
+    ngOnInit(): void {
+      this.initForm();
+    }
+
+    initForm(){
+      console.log("formattedToday",this.formattedToday);
       this.username = this.formBuilder.group({
         avatar: ['', Validators.required],
         name: ['', Validators.required],
@@ -34,8 +45,9 @@ export class ChildListComponent {
         status: ['', Validators.required],
         password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20) , Validators.pattern("(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()/.=+]).{6,20}")]],
         age: ['', [Validators.required, Validators.min(1), Validators.max(100)]],
-        date: ['', Validators.required],
+        date: [this.formattedToday, Validators.required],
       });
+      
     }
 
   // handle search
@@ -66,22 +78,16 @@ export class ChildListComponent {
     return false;
   }
 
-  
   // checkbox block
-  blockArr = [
-    {id:1,name:"Kỳ 1", isSelected: true},
-    {id:2,name:"Kỳ 2", isSelected: false},
-    {id:3,name:"Kỳ 3", isSelected: false},
-  ];
-
   onChange(event: any){
     console.log(event.target.value);
   }
 
   // modal
   openModal(template: TemplateRef<void>) {
-    this.modalRef = this.modalService.show(template);
-  }
+    this.modalRef = this.modalService.show(template,{
+    });
+    }
 
   // add
   changeDataToParent(){
@@ -91,7 +97,7 @@ export class ChildListComponent {
       name: string;
       username: string;
       gender: string;
-      date_of_study: string;
+      date_of_study: Date;
       block1: boolean;
       block2: boolean;
       status: string;
@@ -125,6 +131,7 @@ export class ChildListComponent {
       })
     }else{
       this.markFormGroupAsTouched(this.username);
+      console.log(this.username);
     }
   }
 // add
@@ -146,7 +153,8 @@ export class ChildListComponent {
       username: string;
       gender: string;
       date_of_study: string;
-      block: boolean[];
+      block1: boolean;
+      block2: boolean;
       status: string;
       password: string;
       age: number;
@@ -165,7 +173,8 @@ export class ChildListComponent {
       username: [data.username, Validators.required],
       gender: [data.gender, Validators.required],
       date_of_study: [data.date_of_study, Validators.required],
-      block: [data.block, Validators.required],
+      block1: [data.block1],
+      block2: [data.block2],
       status: [data.status, Validators.required],
       password: [data.password, [Validators.required, Validators.minLength(6), Validators.maxLength(20) , Validators.pattern("(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()/.=+]).{6,20}")]],
       age: [data.age, [Validators.required, Validators.min(1), Validators.max(100)]],
@@ -203,7 +212,7 @@ export class ChildListComponent {
     // this.message = 'Confirmed!';
     // this.modalRef?.hide();
     this.userService.deleteUser(id).subscribe(data => {
-      alert("Xoa nguoi dung thanh cong");
+      // alert("Xoa nguoi dung thanh cong");
       window.location.reload();
     })
   }

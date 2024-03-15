@@ -39,7 +39,7 @@
           </div>
 
           <div class="col-12 mb-3">
-            <input type="date" class="form-control" formControlName="date">
+            <input type="date" class="form-control" formControlName="date" placeholder="Ngày nhập học...">
             <div *ngIf="username.controls['date'].hasError('required') && username.controls['date'].touched"
               class="alert alert-danger">
               date bat buoc phai nhap
@@ -73,19 +73,16 @@
           </div>
 
           <div class="col-12 mb-3">
-            <!-- <div *ngFor="let block of blockArr">
-              <input type="checkbox" formControlName="block" [checked]="block.isSelected" [value]="block.id"
-                class="mx-1" id="{{block.id}}" (change)="onChange($event)"> <label
-                for="{{block.id}}">{{block.name}}</label>
-            </div> -->
-            <input type="checkbox" formControlName="block1" id="block1" class="mx-2"> <label for="block1">Kỳ
-              1</label>
-            <input type="checkbox" formControlName="block2" id="block2" class="mx-2"> <label for="block2">Kỳ
-              2</label>
-            <div class="alert alert-danger"
-              *ngIf="(username.get('block1')?.invalid && username.get('block1')?.touched) && (username.get('block2')?.invalid && username.get('block2')?.touched)">
+              <input type="checkbox" formControlName="block1"
+                class="mx-1" id="block1" (change)="onChange($event)"> <label
+                for="block1">Kỳ 1</label>
+                <input type="checkbox" formControlName="block2"
+                class="mx-1" id="block2" (change)="onChange($event)"> <label
+                for="block2">Kỳ 2</label>
+            <!-- <div class="alert alert-danger"
+              *ngIf="(username.get('block')?.invalid && username.get('block')?.touched)">
               Kỳ học bắt buộc phải chọn
-            </div>
+            </div> -->
           </div>
 
           <div class="col-12 mb-3">
@@ -177,7 +174,7 @@
           </div>
 
           <div class="col-12 mb-3">
-            <input type="date" class="form-control" formControlName="date">
+            <input type="date" class="form-control" formControlName="date" placeholder="ngày nhập học...">
             <div *ngIf="username.controls['date'].hasError('required') && username.controls['date'].touched"
               class="alert alert-danger">
               date bat buoc phai nhap
@@ -211,15 +208,12 @@
           </div>
 
           <div class="col-12 mb-3">
-            <div *ngFor="let block of blockArr">
-              <input type="checkbox" formControlName="block" checked [value]="block.id" class="mx-1" id="{{block.id}}"
-                (change)="onChange($event)"> <label for="{{block.id}}">{{block.name}}</label>
-            </div>
-            <!-- <input type="checkbox" formControlName="block[1]" id="block2" class="mx-2"> <label for="block2">Kỳ 2</label> -->
-            <div *ngIf="username.controls['block'].hasError('required') && username.controls['block'].touched"
-              class="alert alert-danger">
-              block bat buoc phai nhap
-            </div>
+            <input type="checkbox" formControlName="block1"
+                class="mx-1" id="block1" (change)="onChange($event)"> <label
+                for="block1">Kỳ 1</label>
+                <input type="checkbox" formControlName="block2"
+                class="mx-1" id="block2" (change)="onChange($event)"> <label
+                for="block2">Kỳ 2</label>
           </div>
 
           <div class="col-12 mb-3">
@@ -287,7 +281,8 @@
         <th>username</th>
         <th>gender</th>
         <th>age</th>
-        <th>date of study</th>
+        <th>Năm học</th>
+        <th>Ngày Nhập học</th>
         <th>block</th>
         <th>status</th>
         <th>edit</th>
@@ -312,7 +307,7 @@
           {{item.username}}</td>
         <td
           *ngIf="(searchText==='' || item.name.toLowerCase().includes(searchText) || item.username.toLowerCase().includes(searchText)) && checkDisplayList(i+1)">
-          {{item.gender}}</td>
+          {{item.gender | genderDate:'gender'}}</td>
         <td
           *ngIf="(searchText==='' || item.name.toLowerCase().includes(searchText) || item.username.toLowerCase().includes(searchText)) && checkDisplayList(i+1)">
           {{item.age}}</td>
@@ -320,8 +315,14 @@
           *ngIf="(searchText==='' || item.name.toLowerCase().includes(searchText) || item.username.toLowerCase().includes(searchText)) && checkDisplayList(i+1)">
           {{item.date_of_study}}</td>
         <td
+        *ngIf="(searchText==='' || item.name.toLowerCase().includes(searchText) || item.username.toLowerCase().includes(searchText)) && checkDisplayList(i+1)">
+        {{item.date | genderDate:'date'}}</td>
+        <td
           *ngIf="(searchText==='' || item.name.toLowerCase().includes(searchText) || item.username.toLowerCase().includes(searchText)) && checkDisplayList(i+1)">
-          {{item.block}}</td>
+          <span *ngIf="item.block1">- Kỳ 1</span>
+          <br>
+          <span *ngIf="item.block2">- Kỳ 2</span>
+        </td>
         <td
           *ngIf="(searchText==='' || item.name.toLowerCase().includes(searchText) || item.username.toLowerCase().includes(searchText)) && checkDisplayList(i+1)">
           <span *ngIf="item.status==='1'" class="btn btn-danger">Nghỉ học</span>
