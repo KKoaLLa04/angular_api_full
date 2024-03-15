@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { UserService } from '../service/user.service';
 
 @Component({
@@ -6,14 +6,28 @@ import { UserService } from '../service/user.service';
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss']
 })
-export class ListComponent{
+export class ListComponent implements OnInit{
 
   data: any;
   constructor(
     private userService: UserService,
-    ){
-      this.userService.getData().subscribe((responseData: any) => {
-        this.data = responseData;
-      })
+  ){
+      
+  }
+
+  ngOnInit(): void {
+    this.getListData();
+  }
+
+  getListData(){
+    this.userService.getData().subscribe((responseData: any) => {
+      this.data = responseData;
+    })
+  }
+
+  reloadData(value:boolean){
+    if(value){
+      this.getListData();
+    }
   }
 }
